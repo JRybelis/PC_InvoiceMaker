@@ -1,13 +1,15 @@
 using PC_InvoiceMaker.LIB.Interfaces.Services.Validation;
-using PC_InvoiceMaker.LIB.Models;
+using PC_InvoiceMaker.LIB.Dtos;
 using PC_InvoiceMaker.LIB.Models.Country;
 
 namespace PC_InvoiceMaker.Logic.Services.Validation;
 
 public class CountryValidationService : ICountryValidationService
 {
-    public bool isCountryExisting(InvoiceRequest invoiceRequest, Country officialCountry)
+    public bool checkCountryExists(InvoiceDto invoiceDto, List<Country> officialCountries)
     {
-        throw new NotImplementedException();
+        var countryMatch = officialCountries.Where(country => country.Name == invoiceDto.CustomerDetails.Address.Country.Name).FirstOrDefault();
+
+        return countryMatch is not null ? true : false;
     }
 }
