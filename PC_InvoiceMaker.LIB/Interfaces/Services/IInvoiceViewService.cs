@@ -1,8 +1,8 @@
-using PC_InvoiceMaker.LIB.Models;
+using PC_InvoiceMaker.LIB.Dtos;
 
 namespace PC_InvoiceMaker.LIB.Interfaces.Services;
 
 public interface IInvoiceViewService
 {
-    void DisplayGeneratedInvoice(InvoiceRequest invoiceRequest);
+    void DisplayGeneratedInvoice(InvoiceDto invoiceRequest);
 }

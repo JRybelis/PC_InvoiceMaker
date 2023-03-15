@@ -1,7 +1,7 @@
 using PC_InvoiceMaker.CLI.Interfaces;
 using PC_InvoiceMaker.LIB.Interfaces.Services;
 using PC_InvoiceMaker.LIB.Interfaces.IO;
-using PC_InvoiceMaker.LIB.Models;
+using PC_InvoiceMaker.LIB.Dtos;
 using PC_InvoiceMaker.LIB.Models.Business;
 using PC_InvoiceMaker.LIB.Models.Country;
 using PC_InvoiceMaker.LIB.Enums.Business;
@@ -72,14 +72,30 @@ public class InvoiceMakerCli : IInvoiceViewService, IInvoiceMakerCli
             CustomerOrigin = CustomerOriginBloc.EU
         };
 
-        InvoiceRequest invoiceRequestLtuHrv = new()
+        InvoiceBodyDto invoiceBodyDto1 = new()
+        {
+            Product = "Snails, frozen, 5kg",
+            Quantity = 10,
+            UnitPrice = 40
+        };
+
+        InvoiceBodyDto invoiceBodyDto2 = new()
+        {
+            Product = "Flitch, 1kg",
+            Quantity = 15,
+            UnitPrice = 14
+        };
+
+        InvoiceDto invoiceRequestLtuHrv = new()
         {
             SupplierDetails = LithuanianCompany1,
             CustomerDetails = CroatianCustomer,
             PONumber = "xhr997",
-            Product = "Snails, frozen, 5kg",
-            Quantity = 10,
-            UnitPrice = 40
+            InvoiceBodyDto = new List<InvoiceBodyDto>
+            {
+                invoiceBodyDto1,
+                invoiceBodyDto2
+            }
         };
 
         do
@@ -101,9 +117,9 @@ public class InvoiceMakerCli : IInvoiceViewService, IInvoiceMakerCli
         Writer.Write(Environment.NewLine);
     }
 
-    public void DisplayGeneratedInvoice(InvoiceRequest invoiceRequest)
+    public void DisplayGeneratedInvoice(InvoiceDto invoiceDto)
     {
-        Invoice invoice = InvoiceService.GenerateInvoice(invoiceRequest);
+        Invoice invoice = InvoiceService.GenerateInvoice(invoiceDto);
 
         Writer.Write($"The invoice generated successfully.");
         Writer.Write(Environment.NewLine);

@@ -1,10 +1,10 @@
-using PC_InvoiceMaker.LIB.Models;
+using PC_InvoiceMaker.LIB.Dtos;
 using PC_InvoiceMaker.LIB.Models.Business;
 
-namespace PC_InvoiceMaker.LIB.Interfaces.Services
+namespace PC_InvoiceMaker.LIB.Interfaces.Services;
+
+public interface IInvoiceService
 {
-    public interface IInvoiceService
-    {
-        Invoice GenerateInvoice(InvoiceRequest invoiceRequest);
-    }
+    Invoice GenerateInvoice(InvoiceDto invoiceRequest);
+    Invoice CalculateInvoiceTotals(InvoiceDto invoiceRequest, Invoice invoice);
 }
