@@ -8,6 +8,6 @@ public class InvoiceService : IInvoiceService
 {
     public Invoice GenerateInvoice(InvoiceRequest invoiceRequest)
     {
-        return new Invoice();
+        throw new NotImplementedException();
     }
 }

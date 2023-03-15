@@ -4,6 +4,10 @@
     <ProjectReference Include="..\PC_InvoiceMaker.LIB\PC_InvoiceMaker.LIB.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

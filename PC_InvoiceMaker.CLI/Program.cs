@@ -3,8 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using PC_InvoiceMaker.CLI;
 using PC_InvoiceMaker.CLI.Interfaces;
 using PC_InvoiceMaker.LIB.Interfaces.Services;
+using PC_InvoiceMaker.LIB.Interfaces.Services.Validation;
+using PC_InvoiceMaker.LIB.Interfaces.Services.Web;
 using PC_InvoiceMaker.Logic.Services;
-
+using PC_InvoiceMaker.Logic.Services.Validation;
+using PC_InvoiceMaker.Logic.Services.Web;
 
 class Program
 {
@@ -21,6 +24,9 @@ class Program
         services.AddScoped<IInvoiceViewService>(implementationFactory: service =>
             service.GetRequiredService<InvoiceMakerCli>());
         services.AddScoped<IInvoiceService, InvoiceService>();
+        services.AddScoped<ICountryValidationService, CountryValidationService>();
+        services.AddScoped<ICountriesWebClient, CountriesWebClient>();
+        services.AddScoped<IResultParser, ResultParser>();
 
         await using ServiceProvider serviceProvider = 
             services.BuildServiceProvider(validateScopes: true);

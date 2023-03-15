@@ -31,21 +31,13 @@ public class InvoiceMakerCli : IInvoiceViewService, IInvoiceMakerCli
 
         Country Lithuania = new()
         {
-            Name = new()
-            {
-                Common = "Lithuania",
-                Official = "Republic of Lithuania"
-            },
+            Name = "Lithuania",
             RegionalBlocs = new List<RegionalBloc>{ EU }
         };
 
         Country Croatia = new()
         {
-            Name = new()
-            {
-                Common = "Croatia",
-                Official = "Republic of Croatia"
-            },
+            Name = "Croatia",
             RegionalBlocs = new List<RegionalBloc> { EU }
         };
 
@@ -126,7 +118,7 @@ public class InvoiceMakerCli : IInvoiceViewService, IInvoiceMakerCli
         Writer.Write($"{invoice.SupplierDetails.Name}\t \t \t Invoice {invoice.InvoiceNumber}");
         Writer.Write($"{invoice.SupplierDetails.Address.AddressLine1}");
         Writer.Write($"{invoice.SupplierDetails.Address.TownCity}");
-        Writer.Write($"{invoice.SupplierDetails.Address.Country.Name.Official}");
+        Writer.Write($"{invoice.SupplierDetails.Address.Country.Name}");
         Writer.Write($"{invoice.SupplierDetails.Address.Postcode}");
         Writer.Write(Environment.NewLine);
         Writer.Write($"{invoice.SupplierDetails.PhoneNumber}");
@@ -135,7 +127,7 @@ public class InvoiceMakerCli : IInvoiceViewService, IInvoiceMakerCli
         Writer.Write($"Bill to:  {invoice.CustomerDetails.Name} \t \t \t \t Invoice Number: {invoice.InvoiceNumber}");
         Writer.Write($"\t \t {invoice.CustomerDetails.Address.AddressLine1} \t \t \t \t Date: {DateTime.Today.ToShortDateString}");
         Writer.Write($"\t \t {invoice.CustomerDetails.Address.TownCity} \t \t \t \t PO Number: {invoice.PONumber}");
-        Writer.Write($"\t \t {invoice.CustomerDetails.Address.Country.Name.Official}");
+        Writer.Write($"\t \t {invoice.CustomerDetails.Address.Country.Name}");
         Writer.Write($"\t \t {invoice.CustomerDetails.Address.Postcode}");
         Writer.Write(Environment.NewLine);
     }
